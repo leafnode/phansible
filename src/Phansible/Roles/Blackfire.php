@@ -19,18 +19,12 @@ class Blackfire extends BaseRole
         ];
     }
 
-    protected function installRole($requestVars)
+    public function getVariablesToAskFor()
     {
-        return parent::installRole($requestVars) && $this->blackfireWillBeInstalled($requestVars);
+        return [
+            'blackfire_server_id' => 'Blackfire Server ID',
+            'blackfire_server_token' => 'Blackfire Server Token'
+        ];
     }
 
-    private function blackfireWillBeInstalled($requestVars)
-    {
-        $config = $requestVars['blackfire'];
-
-        if (!is_array($config) || !array_key_exists('install', $config) || $config['install'] == 0) {
-            return false;
-        }
-        return true;
-    }
 }

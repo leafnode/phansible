@@ -45,6 +45,13 @@ interface RoleInterface
     public function getInitialValues();
 
     /**
+     * Get a list of variables that will be requested to input from the user by prompt
+     *
+     * @return array
+     */
+    public function getVariablesToAskFor();
+
+    /**
      * Setup the role
      *
      * @param array $requestVars

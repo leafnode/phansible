@@ -13,6 +13,9 @@ class PlaybookRenderer extends TemplateRenderer
     /** @var array Playbook Roles */
     protected $roles = [];
 
+    /** @var array Variables to prompt for */
+    protected $varsPrompt = [];
+
     /**
      * {@inheritdoc}
      */
@@ -30,6 +33,7 @@ class PlaybookRenderer extends TemplateRenderer
         return [
             'varsfile' => $this->varsFilename,
             'roles'  => $this->roles,
+            'varsprompt' => $this->varsPrompt
         ];
     }
 
@@ -72,5 +76,13 @@ class PlaybookRenderer extends TemplateRenderer
     public function hasRole($role)
     {
         return array_search($role, $this->roles) !== false;
+    }
+
+    /**
+     * @param array $variables
+     */
+    public function addVarPrompts($variables)
+    {
+        $this->varsPrompt = array_merge($this->varsPrompt, $variables);
     }
 }

@@ -74,6 +74,11 @@ abstract class BaseRole implements RoleInterface
             $vagrantBundle->getPlaybook()->addRole($this->role);
         }
 
+        $vars = $this->getVariablesToAskFor();
+        if (!empty($vars)) {
+            $vagrantBundle->getPlaybook()->addVarPrompts($vars);
+        }
+
         $vagrantBundle->getVarsFile()->addMultipleVars([$this->getSlug() => $config]);
     }
 
@@ -94,4 +99,12 @@ abstract class BaseRole implements RoleInterface
      * {@inheritdoc}
      */
     abstract public function getInitialValues();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getVariablesToAskFor()
+    {
+        return [];
+    }
 }

@@ -7,3 +7,11 @@
 {% for role in roles %}
     - {{ role }}
 {% endfor %}
+{% if varsprompt|length > 0 %}
+  vars_prompt:
+{% for var, prompt in varsprompt %}
+    - name: "{{ var }}"
+      prompt: "{{ prompt }}"
+      private: no
+{% endfor %}
+{% endif %}
